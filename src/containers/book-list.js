@@ -3,6 +3,8 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { selectBook } from '../actions/index'
+import { bindActionCreators } from 'redux';
 
 class BookList extends Component {
     renderList() {
@@ -28,4 +30,9 @@ function mapStateToProps(state) { //if 'state' changes all will automatically re
     };
 }
 
-export default connect(mapStateToProps)(BookList); // produces container
+function mapDispatchToProps(dispatch) {
+
+    return bindActionCreators({selectBook: selectBook}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList); // produces container
